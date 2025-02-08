@@ -5,12 +5,12 @@ import Image from 'react-bootstrap/Image';
 
 function Footer() {
   return (
-    <Navbar bg="dark" variant="dark" className="mt-5 py-3 justify-content-center">
+    <Navbar bg="dark" variant="dark" className="mt-auto py-3 justify-content-center w-100">
       <Container className="text-center">
-        <Navbar.Text className="text-light">
+        <Navbar.Text className="text-light d-block">
           By Ing. Juan Carlos Sulbarán
         </Navbar.Text>
-        <Nav className="mt-2">
+        <Nav className="mt-2 justify-content-center">
           <Nav.Link href="https://www.facebook.com" target="_blank">
             <Image src="https://cdn-icons-png.flaticon.com/512/124/124010.png" width="30" height="30" alt="Facebook" />
           </Nav.Link>
