@@ -7,7 +7,7 @@ function ClientList() {
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
-    fetch('/data/clients.json')
+    fetch('http://127.0.0.1:8000/api/clients')
       .then(response => response.json())
       .then(data => setClients(data))
       .catch(error => console.error('Error al cargar los datos:', error));
