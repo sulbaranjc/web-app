@@ -1,26 +1,102 @@
 [
   {
-    "client_id": 1,
-    "first_name": "Juan Carlos",
-    "last_name": "Sulbaran Gonzalez",
-    "phone_number": "555-555-5555",
-    "email": "sulbaranjc@gmail.com",
-    "address": "Zayas 4. 1-3 Madrid - España"
-  },
-  {
-    "client_id": 2,
-    "first_name": "Juan Alberto",
-    "last_name": "Sulbaran Oropeza",
-    "phone_number": "555-555-5555",
-    "email": "sulbaranja@gmail.com",
-    "address": "Segurola 3240. 4-b Buenos Aires - Argentina"
-  },
-  {
-    "client_id": 3,
+    "id": 2,
+    "first_name": "Maria Fernanda",
+    "last_name": "Lopez Perez",
+    "phone_number": "555-555-5552",
+    "email": "maria.fernanda@gmail.com",
+    "address": "Barcelona, España",
+    "created_at": "2025-02-09T11:40:36.000000Z",
+    "updated_at": "2025-02-09T11:40:36.000000Z"
+},
+{
+    "id": 3,
     "first_name": "Carlos Jose",
-    "last_name": "Sulbaran Oropeza",
+    "last_name": "Martinez Rojas",
+    "phone_number": "555-555-5553",
+    "email": "carlos.jose@gmail.com",
+    "address": "Sevilla, España",
+    "created_at": "2025-02-09T11:40:36.000000Z",
+    "updated_at": "2025-02-09T11:40:36.000000Z"
+},
+{
+    "id": 4,
+    "first_name": "Ana Lucia",
+    "last_name": "Fernandez Lopez",
+    "phone_number": "555-555-5554",
+    "email": "ana.lucia@gmail.com",
+    "address": "Valencia, España",
+    "created_at": "2025-02-09T11:40:36.000000Z",
+    "updated_at": "2025-02-09T11:40:36.000000Z"
+},
+{
+    "id": 5,
+    "first_name": "Pedro Manuel",
+    "last_name": "Rodriguez Suarez",
     "phone_number": "555-555-5555",
-    "email": "sulbarancj@gmail.com",
-    "address": "Ciudad 2000 Nro. 17 Maracaibo - Venezuela"
-  }
+    "email": "pedro.manuel@gmail.com",
+    "address": "Málaga, España",
+    "created_at": "2025-02-09T11:40:36.000000Z",
+    "updated_at": "2025-02-09T11:40:36.000000Z"
+},
+{
+    "id": 6,
+    "first_name": "Sofia Andrea",
+    "last_name": "Gomez Sanchez",
+    "phone_number": "555-555-5556",
+    "email": "sofia.andrea@gmail.com",
+    "address": "Bilbao, España",
+    "created_at": "2025-02-09T11:40:36.000000Z",
+    "updated_at": "2025-02-09T11:40:36.000000Z"
+},
+{
+    "id": 7,
+    "first_name": "Miguel Angel",
+    "last_name": "Ruiz Martinez",
+    "phone_number": "555-555-5557",
+    "email": "miguel.angel@gmail.com",
+    "address": "Zaragoza, España",
+    "created_at": "2025-02-09T11:40:36.000000Z",
+    "updated_at": "2025-02-09T11:40:36.000000Z"
+},
+{
+    "id": 8,
+    "first_name": "Valeria Isabel",
+    "last_name": "Torres Ramirez",
+    "phone_number": "555-555-5558",
+    "email": "valeria.isabel@gmail.com",
+    "address": "Murcia, España",
+    "created_at": "2025-02-09T11:40:36.000000Z",
+    "updated_at": "2025-02-09T11:40:36.000000Z"
+},
+{
+    "id": 9,
+    "first_name": "Alejandro Javier",
+    "last_name": "Diaz Navarro",
+    "phone_number": "555-555-5559",
+    "email": "alejandro.javier@gmail.com",
+    "address": "Granada, España",
+    "created_at": "2025-02-09T11:40:36.000000Z",
+    "updated_at": "2025-02-09T11:40:36.000000Z"
+},
+{
+    "id": 10,
+    "first_name": "Natalia Camila",
+    "last_name": "Herrera Ortega",
+    "phone_number": "555-555-5560",
+    "email": "natalia.camila@gmail.com",
+    "address": "Alicante, España",
+    "created_at": "2025-02-09T11:40:36.000000Z",
+    "updated_at": "2025-02-09T11:40:36.000000Z"
+},
+{
+    "id": 12,
+    "first_name": "xxxxxxx",
+    "last_name": "xxxxxxxx",
+    "phone_number": "555-777-9999",
+    "email": "lui1.ramirez@gmail.com",
+    "address": "Nueva Dirección, España",
+    "created_at": "2025-02-10T10:06:54.000000Z",
+    "updated_at": "2025-02-10T10:07:07.000000Z"
+}
 ]

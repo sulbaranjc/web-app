@@ -25,7 +25,7 @@ function Header() {
         
         {/* Título centrado */}
         <Navbar.Text className="mx-auto fw-bold text-center">
-          Trabajo de FrontEnd con Node JS - React y Bootstrap.
+          Trabajo de FrontEnd con React y Reacy-Bootstrap.
         </Navbar.Text>
         
         {/* Opciones alineadas a la derecha */}

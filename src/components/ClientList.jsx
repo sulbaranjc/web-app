@@ -30,8 +30,8 @@ function ClientList() {
         </thead>
         <tbody>
           {clients.map(client => (
-            <tr key={client.client_id}>
-              <td>{client.client_id}</td>
+            <tr key={client.id}>
+              <td>{client.id}</td>
               <td>{client.first_name}</td>
               <td>{client.last_name}</td>
               <td>{client.phone_number}</td>
