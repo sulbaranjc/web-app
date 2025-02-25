@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';  // <-- Importa PropTypes
+import PropTypes from 'prop-types';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 function ClientFormModal({ show, handleClose, client, onSave }) {
@@ -11,11 +11,14 @@ function ClientFormModal({ show, handleClose, client, onSave }) {
     address: ''
   });
 
+  /**
+   * Efecto para actualizar el formulario cuando cambia el cliente seleccionado o cuando se abre el modal.
+   * - Si hay un cliente, se llenan los campos con su información.
+   * - Si no hay cliente y el modal se abre, se reinicia el formulario.
+   */
   useEffect(() => {
-    if (client) {
-      setFormData(client);
-    } else {
-      setFormData({
+    if (show) { 
+      setFormData(client || {
         first_name: '',
         last_name: '',
         phone_number: '',
@@ -23,7 +26,7 @@ function ClientFormModal({ show, handleClose, client, onSave }) {
         address: ''
       });
     }
-  }, [client]);
+  }, [client, show]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,6 +58,7 @@ function ClientFormModal({ show, handleClose, client, onSave }) {
               required
             />
           </Form.Group>
+          
           <Form.Group controlId="formLastName" className="mb-3">
             <Form.Label>Apellido</Form.Label>
             <Form.Control
@@ -65,6 +69,7 @@ function ClientFormModal({ show, handleClose, client, onSave }) {
               required
             />
           </Form.Group>
+          
           <Form.Group controlId="formPhoneNumber" className="mb-3">
             <Form.Label>Teléfono</Form.Label>
             <Form.Control
@@ -75,6 +80,7 @@ function ClientFormModal({ show, handleClose, client, onSave }) {
               required
             />
           </Form.Group>
+          
           <Form.Group controlId="formEmail" className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -85,6 +91,7 @@ function ClientFormModal({ show, handleClose, client, onSave }) {
               required
             />
           </Form.Group>
+          
           <Form.Group controlId="formAddress" className="mb-3">
             <Form.Label>Dirección</Form.Label>
             <Form.Control
@@ -95,6 +102,7 @@ function ClientFormModal({ show, handleClose, client, onSave }) {
               required
             />
           </Form.Group>
+          
           <div className="d-flex justify-content-center mt-3">
             <Button variant="primary" type="submit">
               Guardar
@@ -106,12 +114,11 @@ function ClientFormModal({ show, handleClose, client, onSave }) {
   );
 }
 
-// 📌 Agregar validación de PropTypes
 ClientFormModal.propTypes = {
-  show: PropTypes.bool.isRequired,       // show debe ser un booleano obligatorio
-  handleClose: PropTypes.func.isRequired, // handleClose debe ser una función obligatoria
-  client: PropTypes.object,               // client puede ser un objeto (pero no es obligatorio)
-  onSave: PropTypes.func.isRequired       // onSave debe ser una función obligatoria
+  show: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  client: PropTypes.object,
+  onSave: PropTypes.func.isRequired
 };
 
 export default ClientFormModal;

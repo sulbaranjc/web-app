@@ -26,7 +26,7 @@ function ClientList() {
    * Obtiene la lista de clientes desde el backend.
    */
   const fetchClients = () => {
-    fetch('http://127.0.0.1:8000/api/clients')
+    fetch('https://api-clients.sulbaranjc.website/api/clients')
       .then(response => response.json())
       .then(data => setClients(data))
       .catch(error => console.error('Error al cargar los datos:', error));
@@ -37,7 +37,7 @@ function ClientList() {
    * @param {number} id - ID del cliente a eliminar.
    */
   const handleDelete = (id) => {
-    fetch(`http://127.0.0.1:8000/api/clients/${id}`, {
+    fetch(`https://api-clients.sulbaranjc.website/api/clients/${id}`, {
       method: 'DELETE',
     })
       .then(response => {
@@ -57,7 +57,7 @@ function ClientList() {
    */
   const handleSave = (client) => {
     const method = client.id ? 'PUT' : 'POST';
-    const url = client.id ? `http://127.0.0.1:8000/api/clients/${client.id}` : 'http://127.0.0.1:8000/api/clients';
+    const url = client.id ? `https://api-clients.sulbaranjc.website/api/clients/${client.id}` : 'https://api-clients.sulbaranjc.website/api/clients';
 
     fetch(url, {
       method: method,
@@ -134,7 +134,10 @@ function ClientList() {
       {/* Modal para agregar/editar clientes, pasando los datos necesarios mediante props */}
       <ClientFormModal
         show={showModal} // Control de visibilidad del modal
-        handleClose={() => setShowModal(false)} // Función para cerrar el modal
+        handleClose={() => {
+          setShowModal(false);
+          setSelectedClient(null); // Resetear el cliente seleccionado al cerrar el modal
+        }} // Función para cerrar el modal
         client={selectedClient} // Se pasa el cliente seleccionado para edición, o null si es nuevo
         onSave={handleSave} // Función para guardar cambios
       />
