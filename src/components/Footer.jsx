@@ -8,7 +8,7 @@ function Footer() {
     <Navbar bg="dark" variant="dark" className="mt-auto py-3 justify-content-center w-100">
       <Container className="text-center">
         <Navbar.Text className="text-light d-block">
-          By Ing. Juan Carlos Sulbarán
+          By Ing. Juan Carlos Sulbarán G.
         </Navbar.Text>
         <Nav className="mt-2 justify-content-center">
           <Nav.Link href="https://www.facebook.com" target="_blank">
