@@ -4,16 +4,26 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import ClientFormModal from './ClientFormModal.jsx';
 
-/**
- * Configuración de Endpoints.
- */
- const API_BASE_URL = 'https://api-clients.sulbaranjc.website/api/clients';
-//const API_BASE_URL = 'http://127.0.0.1:8000/api/clients';
-//const API_BASE_URL = 'http://localhost:8080/clients';
+const API_BASE_URLS = [
+  'http://localhost:8080/clients', // Backend Java
+  'http://127.0.0.1:8000/api/clients', // Backend PHP
+  'https://api-clients.sulbaranjc.website/api/clients' //Backend php nube.
+];
 
-/**
- * Componente que muestra una lista de clientes con opciones para agregar, editar y eliminar.
- */
+const fetchWithFallback = async (urlOptions, fetchOptions = {}) => {
+  for (const url of urlOptions) {
+    try {
+      const response = await fetch(url, fetchOptions);
+      if (response.ok) {
+        return await response.json();
+      }
+    } catch (error) {
+      console.error(`Error con el endpoint ${url}:`, error);
+    }
+  }
+  throw new Error('No se pudo completar la solicitud con ninguno de los endpoints.');
+};
+
 function ClientList() {
   const [clients, setClients] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -23,57 +33,53 @@ function ClientList() {
     fetchClients();
   }, []);
 
-  const fetchClients = () => {
-    fetch(API_BASE_URL)
-      .then(response => response.json())
-      .then(data => setClients(data))
-      .catch(error => console.error('Error al cargar los datos:', error));
+  const fetchClients = async () => {
+    try {
+      const data = await fetchWithFallback(API_BASE_URLS);
+      setClients(data);
+    } catch (error) {
+      console.error('Error al cargar los datos:', error);
+    }
   };
 
-  const handleDelete = (id) => {
-    fetch(`${API_BASE_URL}/${id}`, {
-      method: 'DELETE',
-    })
-      .then(response => {
-        if (response.ok) {
-          setClients(clients.filter(client => client.id !== id));
-        } else {
-          console.error('Error al eliminar el cliente');
-        }
-      })
-      .catch(error => console.error('Error al eliminar el cliente:', error));
+  const handleDelete = async (id) => {
+    try {
+      await fetchWithFallback(API_BASE_URLS.map(url => `${url}/${id}`), { method: 'DELETE' });
+      setClients(clients.filter(client => client.id !== id));
+    } catch (error) {
+      console.error('Error al eliminar el cliente:', error);
+    }
   };
 
-  const handleSave = (client) => {
+  const handleSave = async (client) => {
     const method = client.id ? 'PUT' : 'POST';
-    const url = client.id ? `${API_BASE_URL}/${client.id}` : API_BASE_URL;
+    const urls = client.id ? API_BASE_URLS.map(url => `${url}/${client.id}`) : API_BASE_URLS;
 
-    fetch(url, {
-      method: method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(client),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (method === 'POST') {
-          setClients([...clients, data]);
-        } else {
-          setClients(clients.map(c => (c.id === data.id ? data : c)));
-        }
-        setShowModal(false);
-      })
-      .catch(error => console.error('Error al guardar el cliente:', error));
+    try {
+      const data = await fetchWithFallback(urls, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(client)
+      });
+
+      if (method === 'POST') {
+        setClients([...clients, data]);
+      } else {
+        setClients(clients.map(c => (c.id === data.id ? data : c)));
+      }
+      setShowModal(false);
+    } catch (error) {
+      console.error('Error al guardar el cliente:', error);
+    }
   };
 
   return (
     <Container className="mt-4">
       <h2 className="text-center mb-4">Lista de Clientes</h2>
       <div className="d-flex justify-content-start mb-2">
-        <Button variant="primary" onClick={() => { 
+        <Button variant="primary" onClick={() => {
           setSelectedClient(null);
-          setShowModal(true); 
+          setShowModal(true);
         }}>
           Crear Cliente
         </Button>
@@ -100,9 +106,9 @@ function ClientList() {
               <td>{client.email}</td>
               <td>{client.address}</td>
               <td>
-                <Button variant="warning" size="sm" className="me-2" onClick={() => { 
+                <Button variant="warning" size="sm" className="me-2" onClick={() => {
                   setSelectedClient(client);
-                  setShowModal(true); 
+                  setShowModal(true);
                 }}>
                   Editar
                 </Button>
